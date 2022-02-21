@@ -7,7 +7,14 @@ import java.util.List;
 
 public class DefaultCustomerService {
 
-    private CustomerRespositoryDB respository = new CustomerRespositoryDB();
+
+    public DefaultCustomerService(CustomerRespositoryDB respository) {
+        this.respository = respository;
+    }
+
+    private CustomerRespositoryDB respository;
+
+
 
     public List<Customer> getAllCustomer()
     {
