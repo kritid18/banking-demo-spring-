@@ -1,23 +1,21 @@
 package org.example.service;
 
 import org.example.model.Customer;
-import org.example.repository.CustomerRespositoryDB;
+import org.example.repository.CustomerRepository;
 
 import java.util.List;
 
-public class DefaultCustomerService {
+public class DefaultCustomerService implements CustomerService {
 
-
-    public DefaultCustomerService(CustomerRespositoryDB respository) {
-        this.respository = respository;
+    private CustomerRepository repository;
+    public DefaultCustomerService(CustomerRepository repository) {
+        this.repository = repository;
     }
 
-    private CustomerRespositoryDB respository;
 
-
-
-    public List<Customer> getAllCustomer()
+    public List<Customer> getAllCustomers()
     {
-        return respository.findAll();
+        return repository.findAll();
     }
+
 }
