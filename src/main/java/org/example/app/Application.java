@@ -19,6 +19,7 @@ public class Application{
 
         CustomerService service = context.getBean("customerService", CustomerService.class);
 
+
         List<Customer>customers = service.getAllCustomers();
 
        // CustomerRepositoryStub customerRepositoryStub = new CustomerRepositoryStub();
