@@ -8,8 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("db")
-@Primary
+
 public class CustomerRespositoryDB implements CustomerRepository {
 
     public List<Customer> findAll()

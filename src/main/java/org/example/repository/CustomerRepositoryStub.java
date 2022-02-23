@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
-@Repository("stub")
+
 public class CustomerRepositoryStub implements CustomerRepository{
 
     @Override

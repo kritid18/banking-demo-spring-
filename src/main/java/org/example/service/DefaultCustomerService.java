@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service("customerService")
+
 public class DefaultCustomerService implements CustomerService {
 
-    @Autowired
-    @Qualifier("stub")
+
     private CustomerRepository repository;
     public DefaultCustomerService(CustomerRepository repository) {
         this.repository = repository;
