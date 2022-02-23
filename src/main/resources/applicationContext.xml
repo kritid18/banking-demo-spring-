@@ -6,8 +6,8 @@
 
     <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB" primary="true" />
 
-    <bean name="customerService" class="org.example.service.DefaultCustomerService" autowire="byType">
-<!--        <constructor-arg index="0" ref="customerRepository" />-->
+    <bean name="customerService" class="org.example.service.DefaultCustomerService" autowire="byName">
+<!--     <constructor-arg index="0" ref="customerRepository" />&ndash;&gt;-->
 
 <!--        <property name= "customerRepository" ref="customerRepository"/>-->
     </bean>
