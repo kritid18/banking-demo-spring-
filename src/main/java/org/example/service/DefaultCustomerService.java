@@ -36,7 +36,7 @@ public class DefaultCustomerService implements CustomerService {
     public Customer getCustomer(Long id) {
         Optional<Customer> customerbyId = repository.findById(id);
 // if(customerbyId.isPresent())
-        return customerbyId.get();
+        return customerbyId.orElseGet(Customer::new);
 // else
 // return new Customer();
     }
