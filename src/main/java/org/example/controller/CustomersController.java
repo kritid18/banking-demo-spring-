@@ -4,6 +4,7 @@ import org.example.model.Customer;
 import org.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,11 @@ public class CustomersController {
     public List<Customer> getAllCustomers()
     {
         return customerService.getAllCustomers();
+    }
+
+    @GetMapping
+    @RequestMapping("{id}")
+    public Customer getCustomer(@PathVariable Long id){
+        return customerService.getCustomer(id);
     }
 }

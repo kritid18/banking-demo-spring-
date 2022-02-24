@@ -4,8 +4,12 @@ import org.example.model.Customer;
 import org.example.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("cutomerService")
@@ -29,6 +33,11 @@ public class DefaultCustomerService implements CustomerService {
 
 
 
-
-
+    public Customer getCustomer(Long id) {
+        Optional<Customer> customerbyId = repository.findById(id);
+// if(customerbyId.isPresent())
+        return customerbyId.get();
+// else
+// return new Customer();
+    }
 }
