@@ -3,14 +3,13 @@ package org.example.service;
 import org.example.model.Customer;
 import org.example.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service("cutomerService")
 public class DefaultCustomerService implements CustomerService {
@@ -23,8 +22,7 @@ public class DefaultCustomerService implements CustomerService {
         this.repository = repository;
     }
 
-    public DefaultCustomerService() {
-    }
+
 
     public List<Customer> getAllCustomers()
     {
@@ -32,17 +30,41 @@ public class DefaultCustomerService implements CustomerService {
     }
 
 
-
-    public Customer getCustomer(Long id) {
-        Optional<Customer> customerbyId = repository.findById(id);
-// if(customerbyId.isPresent())
-        return customerbyId.orElseGet(Customer::new);
-
+    public ResponseEntity<Customer> getCustomer(Long Id)
+    {
+        Optional<Customer> optionalCustomer = repository.findById(Id);
+        if(optionalCustomer.isPresent())
+        {
+            return new ResponseEntity<>(optionalCustomer.get(), HttpStatus.OK);
+        }
+        //return new ResponseEntity<>(optionalCustomer.get(), HttpStatus.OK);
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer not found");
     }
+
+
+
+
+//    public Customer getCustomer(Long id) {
+//        Optional<Customer> customerbyId = repository.findById(id);
+//// if(customerbyId.isPresent())
+//        return customerbyId.orElseGet(Customer::new);
+//
+//    }
 
         public void deleteCustomer(Long Id)
         {
-            System.out.println(repository.findById(Id));
-             repository.deleteById(Id);
+//            System.out.println(repository.findById(Id));
+
+            Optional<Customer> optionalCustomer = repository.findById(Id);
+            if(optionalCustomer.isPresent())
+            {
+                repository.deleteById(Id);
+            }
+            //return new ResponseEntity<>(optionalCustomer.get(), HttpStatus.OK);
+            else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer not found");
+            }
+
+             //repository.deleteById(Id);
         }
 }

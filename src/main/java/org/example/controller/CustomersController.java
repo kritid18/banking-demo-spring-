@@ -3,10 +3,10 @@ package org.example.controller;
 import org.example.model.Customer;
 import org.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -21,10 +21,9 @@ public class CustomersController {
         return customerService.getAllCustomers();
     }
 
-    @GetMapping
     @RequestMapping("{id}")
-    public Customer getCustomer(@PathVariable Long id){
-
+    public ResponseEntity<Customer> getCustomer(@PathVariable Long id)
+    {
         return customerService.getCustomer(id);
     }
 
